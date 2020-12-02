@@ -1024,4 +1024,5 @@ function resolve(input) {
 const input = parseInput(inputText)
 const output = resolve(input)
 
+
 console.log(output)
