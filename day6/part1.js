@@ -2169,12 +2169,27 @@ function parseInput(inputText) {
 function resolve(input) {
     const arr = []
     let result = 0
-    input.map(item => arr.push(item.replaceAll(/(\n)/g, "").split('')))
+    input.map(item => arr.push(item.replaceAll('\n', "").split('')))
     arr.map(item => result += [...new Set(item)].length)
     
     return result
 }
+
+function resolve2(input){
+    let result = 0;
+    const groups = input.map(subgroup => subgroup.split('\n'))
+
+    for(let i = 0; i < groups.length; i++) {
+        const personsArr = groups[i].join('').split('')
+        const newArr = [...new Set(personsArr.join('').split(''))];
+        const filtered = newArr.filter(item => groups[i].every(el => el.includes(item)));
+        result += filtered.length
+    }
+    return result
+}
 const input = parseInput(inputText)
 const output = resolve(input)
+const output2 = resolve2(input)
 
-console.log('output', output)
+
+console.log('output2', output2)
